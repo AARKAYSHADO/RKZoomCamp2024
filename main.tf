@@ -2,44 +2,33 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "4.51.0"
+      version = "5.6.0"
     }
   }
 }
 
 provider "google" {
-# Credentials only needs to be set if you do not have the GOOGLE_APPLICATION_CREDENTIALS set
-#  credentials = 
-  project = "terrademo-412012"
-  region  = "us-central1"
+  credentials = file(var.credentials)
+  project     = var.project
+  region      = var.region
 }
 
 resource "google_storage_bucket" "demo-bucket" {
-  name          = "terrademo-412012-terra-bucket"
-  location      = "US"
-
-  # Optional, but recommended settings:
-  storage_class = "STANDARD"
-  uniform_bucket_level_access = true
-
-  versioning {
-    enabled     = true
-  }
+  name          = var.gcs_bucket_name
+  location      = var.location
+  force_destroy = true
 
   lifecycle_rule {
-    action {
-      type = "Delete"
-    }
     condition {
-      age = 1  // days
+      age = 1
+    }
+    action {
+      type = "AbortIncompleteMultipartUpload"
     }
   }
-
-  force_destroy = true
 }
 
-resource "google_bigquery_dataset" "demo-dataset" {
-  dataset_id = "demodataset"
-  project    = "terrademo-412012"
-  location   = "US"
+resource "google_bigquery_dataset" "demo_dataset" {
+  dataset_id = var.bq_dataset_name
+  location   = var.location
 }
