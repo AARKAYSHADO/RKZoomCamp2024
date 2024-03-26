@@ -1,0 +1,85 @@
+
+CREATE OR REPLACE EXTERNAL TABLE `dltdemo.nyctaxi.taxi_lookup` 
+OPTIONS (
+    format = 'PARQUET',
+    uris = ['gs://nyctaxi_dltdemo/taxi+_zone_lookup.parquet']);
+
+SELECT count(*) FROM `dltdemo.nyctaxi.taxi_lookup`  --265
+
+CREATE OR REPLACE EXTERNAL TABLE `dltdemo.nyctaxi.external_green_tripdata_2022` 
+OPTIONS (
+    format = 'PARQUET',
+    uris = ['gs://nyctaxi_dltdemo/green/green_tripdata_2022-01.parquet']);
+
+
+SELECT count(*) FROM `dltdemo.nyctaxi.external_green_tripdata_2022`
+
+CREATE OR REPLACE EXTERNAL TABLE `dltdemo.nyctaxi.external_green_tripdata_2022` 
+OPTIONS (
+    format = 'PARQUET',
+    uris = ['gs://nyctaxi_dltdemo/green/green_tripdata_2022-01.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-02.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-03.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-04.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-05.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-06.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-07.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-08.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-09.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-10.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-11.parquet',
+    'gs://nyctaxi_dltdemo/green/green_tripdata_2022-12.parquet']);
+
+-- create table dltdemo.nyctaxi.external_green_tripdata_2022_main as
+-- select * from dltdemo.nyctaxi.external_green_tripdata_2022;
+
+-- select count(*) from dltdemo.nyctaxi.external_green_tripdata_2022 
+-- where fare_amount = 0;
+
+
+-- create or replace table `dltdemo.nyctaxi.external_green_tripdata_2022_part` 
+-- partition by date(lpep_pickup_datetime)
+-- cluster by PUlocationID as 
+-- (select * from dltdemo.nyctaxi.external_green_tripdata_2022);
+
+-- select distinct PUlocationID 
+-- from `dltdemo.nyctaxi.external_green_tripdata_2022_main` 
+-- where lpep_pickup_datetime >= '2022-06-01' 
+-- and lpep_pickup_datetime <= '2022-06-30';
+
+select count(*)
+from `dltdemo.nyctaxi.external_green_tripdata_2022_main` 
+
+
+
+Module 4
+
+-- CREATE OR REPLACE EXTERNAL TABLE `dltdemo.nyctaxi.external_green_tripdata` 
+-- OPTIONS (
+--     format = 'PARQUET',
+--     uris = ['gs://trips_data_all_aarkayshado/green/green_tripdata_2019-*.parquet',
+--     'gs://trips_data_all_aarkayshado/green/green_tripdata_2020-*.parquet']);
+
+-- CREATE OR REPLACE EXTERNAL TABLE `dltdemo.nyctaxi.external_yellow_tripdata` 
+-- OPTIONS (
+--     format = 'PARQUET',
+--     uris = ['gs://trips_data_all_aarkayshado/yellow/yellow_tripdata_2019-*.parquet',
+--     'gs://trips_data_all_aarkayshado/yellow/yellow_tripdata_2020-*.parquet']);
+
+-- CREATE OR REPLACE EXTERNAL TABLE `dltdemo.nyctaxi.external_fhv_tripdata` 
+-- OPTIONS (
+--     format = 'PARQUET',
+--     uris = ['gs://trips_data_all_aarkayshado/fhv/fhv_tripdata_2019-*.parquet',
+--     'gs://trips_data_all_aarkayshado/fhv/fhv_tripdata_2020-*.parquet']);
+
+-- select count(*) from dltdemo.nyctaxi.external_yellow_tripdata;
+
+-- create or replace table dltdemo.nyctaxi.green_tripdata as
+-- select * from dltdemo.nyctaxi.external_green_tripdata;
+
+-- create or replace table dltdemo.nyctaxi.yellow_tripdata as
+-- select * from dltdemo.nyctaxi.external_yellow_tripdata;
+
+-- create or replace table dltdemo.nyctaxi.fhv_tripdata as
+-- select * from dltdemo.nyctaxi.external_fhv_tripdata;
+
