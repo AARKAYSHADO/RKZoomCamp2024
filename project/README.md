@@ -4,7 +4,7 @@
 American Stock Exchange - Stock Market Data Pipeline
 
 ## Objective
-Build a data pipeline that can perform ETL to data warehouse hosted on Cloud platform and generate insights on large cap companies' common stocks traded on American Stock Exchange.
+Build a data pipeline that can perform ETL to data warehouse hosted on Cloud platform and generate insights on large cap companies' common stocks traded on American Stock Exchange. Billions of trades occur on a daily basis in American Stock Exchange. In order to generate valuable insights from this data and enable data driven decision making, it is important to engineer this process by building data pipelines and dashboards. This project demonstrates batch processing approach. 
 
 ### Tools used
 - Terraform - To deploy infrastructure on GCS and Bigquery
