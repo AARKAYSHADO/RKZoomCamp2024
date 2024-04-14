@@ -1,9 +1,9 @@
-Data Engineering Zoomcamp 2024 
+#Data Engineering Zoomcamp 2024 
 
-Course Project
+#Course Project
 American Stock Exchange - Stock Market Data Pipeline
 
-Objective
+#Objective
 Build a data pipeline that can perform ETL to data warehouse hosted on Cloud platform and generate insights on large cap companies' common stocks traded on American Stock Exchange.
 
 Tools used
