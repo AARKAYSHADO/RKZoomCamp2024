@@ -126,7 +126,7 @@ cluster by Org as
 
 ### Step 6 - Build dashboard using LookerStudio
 
-![Screenshot of the Stock report](https://lookerstudio.google.com/s/nPRg5eRlYAE)
+![Screenshot of the Stock report](yf_report_h2_2023.JPG)
 
 
 
