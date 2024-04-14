@@ -1,0 +1,15 @@
+FROM python:3.9
+
+RUN pip install google-cloud-storage
+RUN pip install pandas
+
+WORKDIR /app
+
+COPY application_default_credentials.json ./config:/config/application_default_credentials.json
+COPY yf_web_to_gcs.py yf_web_to_gcs.py
+
+ENTRYPOINT ["python", "yf_web_to_gcs.py"]
+
+
+#docker build -t yf:gcs .
+#docker run -it yf:gcs --year=2023 --file=AMZN

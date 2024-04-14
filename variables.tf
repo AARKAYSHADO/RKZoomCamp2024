@@ -1,17 +1,17 @@
 variable "credentials" {
   description = "My Credentials"
-  default     = "./terra.json"
+  default     = "./mycreds.json"
 }
 
 variable "project" {
   description = "Project"
-  default     = "terrademo-412012"
+  default     = "dltdemo"
 }
 
 variable "region" {
   description = "Region"
   #Update the below to your desired region
-  default     = "us-central1"
+  default     = "us-west1"
 }
 
 variable "location" {
@@ -23,13 +23,13 @@ variable "location" {
 variable "bq_dataset_name" {
   description = "My BigQuery Dataset Name"
   #Update the below to what you want your dataset to be called
-  default     = "demodataset"
+  default     = "yf"
 }
 
 variable "gcs_bucket_name" {
   description = "My Storage Bucket Name"
   #Update the below to a unique bucket name
-  default     = "terrademo-412012-terra-bucket"
+  default     = "dataenggzoomcamp_proj_yf"
 }
 
 variable "gcs_storage_class" {

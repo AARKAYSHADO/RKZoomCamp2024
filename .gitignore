@@ -41,4 +41,10 @@ terraform.rc
 target/
 dbt_packages/
 logs/
+spark-3.3.2-bin-hadoop3/
+mage-zoomcamp/
+lib/
+jdk-11.0.2/
+google-cloud-sdk/
+config/
 # end dbt Cloud content

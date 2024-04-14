@@ -1,0 +1,16 @@
+
+FROM python:3.9
+
+RUN apt-get install wget
+RUN pip install pandas
+RUN pip install yfinance
+
+WORKDIR /app
+
+COPY yf_file_extraction.py yf_file_extraction.py
+
+ENTRYPOINT ["python", "yf_file_extraction.py"]
+
+
+#docker build -t yf:pandas .
+#docker run -it yf:pandas --year=2023 --file=AMZN
