@@ -1,12 +1,12 @@
-#Data Engineering Zoomcamp 2024 
+## Data Engineering Zoomcamp 2024 
 
-#Course Project
+## Course Project
 American Stock Exchange - Stock Market Data Pipeline
 
-#Objective
+## Objective
 Build a data pipeline that can perform ETL to data warehouse hosted on Cloud platform and generate insights on large cap companies' common stocks traded on American Stock Exchange.
 
-Tools used
+### Tools used
 Terraform - To deploy infrastructure on GCS and Bigquery
 Docker - To containerize data pipeline scripts
 Spark - To perform data transformations 
@@ -14,7 +14,7 @@ GCS - Data lake used for processing
 Bigquery - Data warehouse to store data
 Looker Studio - Buils reports and derive insights form the data loaded
 
-Pre-requisites
+### Pre-requisites
 Create a GCP account
 Create a project in GCP
 Create a service account for the project that has IAM access set up for GCS, Bigquery, Dataproc
@@ -29,7 +29,7 @@ Copy all the scripts listed below your work folder
   Dockerfile_file_extraction
   Dockerfile_web_to_gcs
 
-Step 1 - Deploy infrastructure
+### Step 1 - Deploy infrastructure
 Deploy google cloud services such as GCS and Bigquery which will be used in this project. 
 Amend credentials, project, region to align to your GCP account in variables.tf file.
 
@@ -41,7 +41,7 @@ terraform init
 terraform plan
 terraform apply
 
-Step 2 - Data extraction
+### Step 2 - Data extraction
 YahooFinance API is used to extract common stocks traded on ASE. 
 This data pipeline takes time period and company name as arguments. 
 
@@ -61,7 +61,7 @@ python yf_file_extraction.py \
     --year=2023 \
     --file=META
 
-Step 3 - Upload to GCS
+### Step 3 - Upload to GCS
 Upload csv files to Google Cloud Storage for further processing. 
 This data pipeline takes time period and company name as arguments. 
 
@@ -81,7 +81,7 @@ python yf_web_to_gcs.py \
     --year=2023 \
     --file=META
 
-Step 4 - csv to parquet
+### Step 4 - csv to parquet
 Convert csv files to parquet format in GCS for optimized data processing
 
 File location - /workspaces/RKZoomCamp2024
@@ -100,7 +100,7 @@ gcloud dataproc jobs submit pyspark \
 
 (**repeat for AMD, AMZN, GOOGL)
 
-Step 5 - parquet to Bigquery
+### Step 5 - parquet to Bigquery
 Perform data transformations in spark and load the results to Bigquery table 
 
 File location - /workspaces/RKZoomCamp2024
@@ -124,5 +124,9 @@ partition by Date
 cluster by Org as 
 (select * from dltdemo.yf.report2023);
 
-Step 6 - Build dashboard using LookerStudio
+### Step 6 - Build dashboard using LookerStudio
+
+![Screenshot of the Stock report](https://lookerstudio.google.com/s/nPRg5eRlYAE)
+
+
 
